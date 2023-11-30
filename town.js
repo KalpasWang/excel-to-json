@@ -12,7 +12,30 @@ XLSX.stream.set_readable(Readable);
 import * as cpexcel from "xlsx/dist/cpexcel.full.mjs";
 XLSX.set_cptable(cpexcel);
 
-const filenames = ["總統-A05-2-(宜蘭縣).xls"];
+const filenames = [
+  "宜蘭縣.xls",
+  "花蓮縣.xls",
+  "金門縣.xls",
+  "南投縣.xls",
+  "屏東縣.xls",
+  "苗栗縣.xls",
+  "桃園市.xls",
+  "高雄市.xls",
+  "基隆市.xls",
+  "連江縣.xls",
+  "雲林縣.xls",
+  "新北市.xls",
+  "新竹市.xls",
+  "新竹縣.xls",
+  "嘉義市.xls",
+  "嘉義縣.xls",
+  "彰化縣.xls",
+  "臺中市.xls",
+  "臺北市.xls",
+  "臺東縣.xls",
+  "臺南市.xls",
+  "澎湖縣.xls",
+];
 
 const townsJson = [];
 const template = {
