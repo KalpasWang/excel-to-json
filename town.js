@@ -52,13 +52,31 @@ const template = {
 };
 
 for (let filename of filenames) {
-  const workbook = XLSX.readFile(filename);
+  const workbook = XLSX.readFile(`data/2016towns/${filename}`);
   const sheet_name_list = workbook.SheetNames;
   const worksheet = workbook.Sheets[sheet_name_list[0]];
   let data = XLSX.utils.sheet_to_json(worksheet);
+  // console.log(data);
   data = data.slice(3);
-  console.log(data);
+  const keys = Object.keys(data[0]);
+  // console.log(data[0]);
+  const result = data.map((datum) => {
+    template.countyName = filename.slice(0, 3);
+    template.townName = datum[keys[0]].trim();
+    template.candidate1 = datum[keys[1]];
+    template.candidate2 = datum[keys[2]];
+    template.candidate3 = datum[keys[3]];
+    template.validVotes = datum[keys[4]];
+    template.invalidVotes = datum[keys[5]];
+    template.totalVotes = datum[keys[6]];
+    template.totalElectors = datum[keys[10]];
+    template.votingRate = datum[keys[11]];
+    return {
+      ...template,
+    };
+  });
+  townsJson.push(...result);
 }
 
 // write townsJson to file
-// fs.writeFileSync("towns.json", JSON.stringify(townsJson));
+fs.writeFileSync("towns.json", JSON.stringify(townsJson));
